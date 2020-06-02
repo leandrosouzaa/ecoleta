@@ -18,3 +18,8 @@
   - GET  http://localhost:3333/users => Lista todos os usuários;
   - GET  http://localhost:3333/users/1 => Lista o usuário com ID 1;
   - PUT  http://localhost:3333/users/1 => Edita o usuário com ID 1;
+
+- Tipos de Parâmetros: 
+  - Body : 
+  - Query: Parâmetros que vem na própria rota, normalmente opcionais e utilizados para filtros e paginação.
+  - Param: Parâmetros que vem na própria rota que identifica um recurso;
