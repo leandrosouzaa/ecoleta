@@ -2,9 +2,9 @@ import Knex from 'knex'
 
 export async function up(knex: Knex) {
    return knex.schema.createTable('point_items', table => {
-      table.uuid('id').primary()
-      table.uuid('point_id').notNullable().references('id').inTable('points');
-      table.uuid('item_id').notNullable().references('id').inTable('items')
+      table.increments('id').primary();
+      table.integer('point_id').notNullable().references('id').inTable('points');
+      table.integer('item_id').notNullable().references('id').inTable('items');
    })
 }
 
