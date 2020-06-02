@@ -4,11 +4,11 @@ import knex from '../database/connection'
 
 export default class PoinstController {
    async index (req: Request, res: Response) {
-      const {city, uf, items} = req.query
+      const {city, uf, items} = req.query;
 
       const parsedItems = String(items)
          .split(',')
-         .map(i => Number(i.trim()))
+         .map(i => Number(i.trim()));
 
       const points = await knex('points')
          .join('point_items', 'points.id', '=' , 'point_items.point_id')
@@ -16,28 +16,28 @@ export default class PoinstController {
          .where('city', String(city))
          .where('uf', String(uf))
          .distinct()
-         .select('points.*')
+         .select('points.*');
 
-      return res.json(points)
+      return res.json(points);
    }
 
 
    async show (req: Request, res: Response) {
-      const {id} = req.params
+      const {id} = req.params;
 
       const point = await knex('points').where('id', id).first();
 
 
       if (!point) {
-         return res.json({message: 'Point not found'}).status(404)
-      }
+         return res.json({message: 'Point not found'}).status(404);
+      };
 
       const items = await knex('items')
          .join('point_items', 'items.id', '=', 'point_items.item_id')
          .where('point_items.point_id', id)
-         .select('items.title')
+         .select('items.title');
 
-      return res.json({point, items})
+      return res.json({point, items});
    }
 
    async create (req: Request, res: Response) {
@@ -52,10 +52,10 @@ export default class PoinstController {
          items
       } = req.body;
    
-      const trx = await knex.transaction()
+      const trx = await knex.transaction();
 
       const point = {
-         image: 'image-fake',
+         image: 'https://images.unsplash.com/photo-1583300919410-7b9186dac94a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
          name,
          email,
          whatsapp,
@@ -63,7 +63,7 @@ export default class PoinstController {
          longitude,
          city,
          uf,
-      }
+      };
 
       const insertedIds = await trx('points').insert(point);
    

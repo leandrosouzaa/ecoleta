@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
    client: 'sqlite3',
@@ -12,4 +12,4 @@ module.exports = {
       directory: path.resolve(__dirname, 'src', 'database', 'seeds')
    },
    useNullAsDefault: true,
-}
+};
