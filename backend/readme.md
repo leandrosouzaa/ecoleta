@@ -23,3 +23,23 @@
   - Body : 
   - Query: Parâmetros que vem na própria rota, normalmente opcionais e utilizados para filtros e paginação.
   - Param: Parâmetros que vem na própria rota que identifica um recurso;
+
+- Banco de Dados
+  - SQLite3;
+  - Tabelas:
+    - points (Pontos de Coleta):
+      - image;
+      - name;
+      - email;
+      - whatsapp;
+      - latitude;
+      - longitude;
+      - city;
+      - uf;
+    - items (Items de coleta):
+      - image;
+      - title;
+    - point_items (Relacionamento de itens que um ponto coleta):
+      - point_id;
+      - item_id
+  - Migrations: Maneira para controle de versão do banco de dados;
