@@ -73,8 +73,8 @@ const Points = () => {
       navigation.goBack();
    }
 
-   function handleNavigationToDetail() {
-      navigation.navigate('Detail');
+   function handleNavigationToDetail(id: number) {
+      navigation.navigate('Detail', {point_id: id});
    }
 
    function handleSelectItem(id: number) {
@@ -118,7 +118,7 @@ const Points = () => {
                         latitude: p.latitude, 
                         longitude: p.longitude,
                      }}
-                     onPress={handleNavigationToDetail}
+                     onPress={() => {handleNavigationToDetail(p.id)}}
                   >
                      <View style={styles.mapMarkerContainer}>
                         <Image
