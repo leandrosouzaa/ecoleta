@@ -65,7 +65,6 @@ const Home = () => {
             value: i.nome
           }
         })
-        console.log('chamou')
         setCities(citiesToSelect);
       })
   }, [uf])
