@@ -598,7 +598,7 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-filewatcher@~3.0.0:
+filewatcher@^3.0.1, filewatcher@~3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/filewatcher/-/filewatcher-3.0.1.tgz#f4a1957355ddaf443ccd78a895f3d55e23c8a034"
   integrity sha1-9KGVc1Xdr0Q8zXiolfPVXiPIoDQ=
