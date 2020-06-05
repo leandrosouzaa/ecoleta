@@ -36,7 +36,7 @@ export default class PoinstController {
          return res.json({message: 'Point not found'}).status(404);
       };
 
-      const serializedPoints = {
+      const serializedPoint = {
          ...point, image_url: `http://192.168.0.103:3333/uploads/${point.image}`
       }
 
@@ -45,7 +45,7 @@ export default class PoinstController {
          .where('point_items.point_id', id)
          .select('items.title');
 
-      return res.json({serializedPoints, items});
+      return res.json({point: serializedPoint, items});
    }
 
    async create (req: Request, res: Response) {
