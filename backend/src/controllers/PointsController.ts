@@ -55,7 +55,7 @@ export default class PoinstController {
       const trx = await knex.transaction();
 
       const point = {
-         image: 'https://images.unsplash.com/photo-1583300919410-7b9186dac94a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+         image: req.file.filename,
          name,
          email,
          whatsapp,
@@ -69,8 +69,11 @@ export default class PoinstController {
    
       const point_id = insertedIds[0];
    
-      const pointItems = items.map((item_id: number) => {
-         return {item_id, point_id}
+      const pointItems = items
+         .split(',')
+         .map((i: string) => Number(i.trim()))
+         .map((item_id: number) => {
+            return {item_id, point_id}
       });
       
       await trx('point_items').insert(pointItems);
