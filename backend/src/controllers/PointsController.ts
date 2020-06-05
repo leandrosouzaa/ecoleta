@@ -17,8 +17,12 @@ export default class PoinstController {
          .where('uf', String(uf))
          .distinct()
          .select('points.*');
+      
+      const serializedPoints = points.map(p => {
+         return {...p, image_url: `http://192.168.0.103:3333/uploads/${p.image}`}
+      })
 
-      return res.json(points);
+      return res.json(serializedPoints);
    }
 
 
@@ -32,12 +36,16 @@ export default class PoinstController {
          return res.json({message: 'Point not found'}).status(404);
       };
 
+      const serializedPoints = {
+         ...point, image_url: `http://192.168.0.103:3333/uploads/${point.image}`
+      }
+
       const items = await knex('items')
          .join('point_items', 'items.id', '=', 'point_items.item_id')
          .where('point_items.point_id', id)
          .select('items.title');
 
-      return res.json({point, items});
+      return res.json({serializedPoints, items});
    }
 
    async create (req: Request, res: Response) {
