@@ -62,6 +62,11 @@ export default class PoinstController {
    
       const trx = await knex.transaction();
 
+      if (!req.file) {
+         await trx.commit(); 
+         return res.status(406).json({message: 'Não é possível criar um ponto sem imagem'})  
+      }
+
       const point = {
          image: req.file.filename,
          name,
